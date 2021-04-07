@@ -1,6 +1,7 @@
 package com.treinamentoapi.workshopspringbootmongodb.resource;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.treinamentoapi.workshopspringbootmongodb.domain.User;
+import com.treinamentoapi.workshopspringbootmongodb.dto.UserDTO;
 import com.treinamentoapi.workshopspringbootmongodb.services.UserService;
 
 @RestController
@@ -22,8 +24,14 @@ public class UserResource {
 
 //	@RequestMapping(method = RequestMethod.GET) ou
 	@GetMapping
-	public ResponseEntity<List<User>> findAll() {
+	public ResponseEntity<List<UserDTO>> findAll() {
 		List<User> list = userService.findAll();
-		return ResponseEntity.ok().body(list);
+		//Lista original -> função stream ->  Transforma a lista
+		//em Stream que é uma coleção compativel com a expressão lambda, a partir do java 8 em diante.
+		//metodo map -> pega cada object x da minha lista original e pra cada object eu retorno um new
+		//UserDTO. passa o X como argumento, e depois volta essa stream para uma lista.
+		//com o metodo collect(Collectors.toLitst().
+		List<UserDTO> listDto = list.stream().map(x -> new UserDTO(x)).collect(Collectors.toList());
+		return ResponseEntity.ok().body(listDto);
 	}
 }
