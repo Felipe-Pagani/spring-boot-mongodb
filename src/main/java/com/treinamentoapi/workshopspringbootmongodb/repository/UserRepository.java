@@ -7,7 +7,7 @@ import com.treinamentoapi.workshopspringbootmongodb.domain.User;
 
 @Repository
 public interface UserRepository extends MongoRepository<User, String>{
-
 }
+
 
 
