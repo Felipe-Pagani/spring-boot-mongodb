@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
 import com.treinamentoapi.workshopspringbootmongodb.domain.Post;
 import com.treinamentoapi.workshopspringbootmongodb.domain.User;
 import com.treinamentoapi.workshopspringbootmongodb.dto.AuthorDTO;
+import com.treinamentoapi.workshopspringbootmongodb.dto.CommentDTO;
 import com.treinamentoapi.workshopspringbootmongodb.repository.PostRepository;
 import com.treinamentoapi.workshopspringbootmongodb.repository.UserRepository;
 
@@ -43,6 +44,17 @@ public class Instantiation implements CommandLineRunner {
 				"Vou viajar para São Paulo, Abraçõs", new AuthorDTO(maria));
 		Post post2 = new Post(null, sdf.parse("23/03/2018"), "Bom dia!", "Acordei feliz hoje!", 
 				new AuthorDTO(maria));
+		
+		CommentDTO c1 = new CommentDTO("Boa viagem!", sdf.parse("21/03/2021"), 
+				new AuthorDTO(alex));
+		CommentDTO c2 = new CommentDTO("Que dia maravilhoso!", sdf.parse("20/04/2021"), 
+				new AuthorDTO(maria));
+		CommentDTO c3 = new CommentDTO("Magnifico", sdf.parse("21/03/2021"), 
+				new AuthorDTO(alex));
+		
+		post1.getCommentDto().addAll(Arrays.asList(c1,c3));
+		post2.getCommentDto().addAll(Arrays.asList(c2));
+		
 		
 		postRepository.saveAll(Arrays.asList(post1, post2));
 		

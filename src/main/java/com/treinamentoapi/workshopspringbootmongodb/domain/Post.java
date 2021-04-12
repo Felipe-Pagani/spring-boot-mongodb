@@ -1,12 +1,15 @@
 package com.treinamentoapi.workshopspringbootmongodb.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.treinamentoapi.workshopspringbootmongodb.dto.AuthorDTO;
+import com.treinamentoapi.workshopspringbootmongodb.dto.CommentDTO;
 
 
 @Document
@@ -21,6 +24,8 @@ public class Post implements Serializable{
 	private String body;
 	
 	private AuthorDTO authorDto;
+	
+	private List<CommentDTO> comments = new ArrayList<>();
 	
 	public Post() {
 		
@@ -74,6 +79,14 @@ public class Post implements Serializable{
 		this.authorDto = authorDto;
 	}
 	
+	public List<CommentDTO> getCommentDto() {
+		return comments;
+	}
+
+	public void setCommentDto(List<CommentDTO> commentDto) {
+		this.comments = commentDto;
+	} 
+	
 
 	@Override
 	public int hashCode() {
@@ -98,5 +111,5 @@ public class Post implements Serializable{
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
-	} 
+	}
 }
