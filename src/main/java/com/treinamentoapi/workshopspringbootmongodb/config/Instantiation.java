@@ -25,7 +25,7 @@ public class Instantiation implements CommandLineRunner {
 	@Autowired
 	private PostRepository postRepository;
 
-	@Override  
+	@Override 
 	public void run(String... args) throws Exception {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
@@ -52,8 +52,8 @@ public class Instantiation implements CommandLineRunner {
 		CommentDTO c3 = new CommentDTO("Magnifico", sdf.parse("21/03/2021"), 
 				new AuthorDTO(alex));
 		
-		post1.getCommentDto().addAll(Arrays.asList(c1,c3));
-		post2.getCommentDto().addAll(Arrays.asList(c2));
+		post1.getComments().addAll(Arrays.asList(c1,c3));
+		post2.getComments().addAll(Arrays.asList(c2));
 		
 		
 		postRepository.saveAll(Arrays.asList(post1, post2));

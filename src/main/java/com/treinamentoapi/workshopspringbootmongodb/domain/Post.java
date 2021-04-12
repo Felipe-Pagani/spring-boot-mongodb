@@ -79,14 +79,15 @@ public class Post implements Serializable{
 		this.authorDto = authorDto;
 	}
 	
-	public List<CommentDTO> getCommentDto() {
+	public List<CommentDTO> getComments() {
 		return comments;
 	}
 
-	public void setCommentDto(List<CommentDTO> commentDto) {
-		this.comments = commentDto;
-	} 
+	public void setComments(List<CommentDTO> comments) {
+		this.comments = comments;
+	}
 	
+
 
 	@Override
 	public int hashCode() {
